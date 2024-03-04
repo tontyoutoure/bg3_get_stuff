@@ -1,0 +1,39 @@
+{
+    "character_icon": [
+        [50,386], 
+        [50,509],
+        [50,632],
+        [50,755]
+    ],
+    "health_bar_x_range":[884,931],
+    "health_bar_y_range":[91, 98],
+    "npc_loc":[970,807],
+    "warrior_class":[300,300],
+    "class_confirm":[1204,1033],
+    "level_up":[433,1055],
+    "level_accept":[1171,1003],
+    "strategy_pos_lv2":[27,246],
+    "strategies_start":        [487,216],
+    "strategies_end":[487,574],
+    "feature_pos_lv3":[23,188],
+    "features":[
+        [416,227],
+        [416,251],
+        [416,300],
+        [416,330],
+        [416,354]
+    ],
+    "strategy_pos_lv6":[27,176],
+    "return_pos":[1891,28],
+
+
+
+    "first_slot_position":[1091,276],
+    "rearrange_button":[645,972],
+    "weight_sort_button":[585,885],
+    "container_end":[1786,214],
+    "item_corner_start":[1063,246],
+    "item_corner_end":[1395,934],
+    "container_inside":[1686,314]
+
+}

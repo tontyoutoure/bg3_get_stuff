@@ -11,7 +11,7 @@ with open("promts.json") as f:
     promts = json.load(f)
 
 class stuff_mover():
-    def __init__(self, window_x_start, window_y_start, max_level = 10, loop_count = 1):
+    def __init__(self, window_x_start, window_y_start, max_level = 12, loop_count = 1):
         self.window_x_start = window_x_start
         self.window_y_start = window_y_start
         self.purchasers = []
@@ -143,7 +143,7 @@ class stuff_mover():
         self.wait_for_black(10)
         self.right_click_alot(5)
 
-        if self.current_level in [1,4,8]:
+        if self.current_level in [1,4,8,10]:
             pass
         
         if self.current_level == 2:
@@ -174,6 +174,9 @@ class stuff_mover():
             self.click(self.position_list["strategies"][5])
             self.click(self.position_list["strategies"][6])
 
+        if self.current_level == 11:
+            self.click(self.position_list["feature_pos_lv3"])
+            self.click(self.position_list["features"][2])
             
 
         self.click(self.position_list["level_accept"])

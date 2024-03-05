@@ -11,8 +11,6 @@ import json
 
 from stuff_mover import stuff_mover
 
-with open("promts.json") as f:
-    promts = json.load(f)
 
 def show_text(text, duration, bg3_handle):
     root = tk.Tk()
@@ -34,22 +32,22 @@ def show_text(text, duration, bg3_handle):
 
     root.mainloop()
 
-def get_bg3_corner(bg3_handle, title_bar_height=58, border_width=2):
-    # You may need to adjust these values based on your application and Windows version/DPI settings
-    frame = wintypes.RECT()
-    DWMWA_EXTENDED_FRAME_BOUNDS = 9
-    windll.dwmapi.DwmGetWindowAttribute(
-        bg3_handle,
-        DWMWA_EXTENDED_FRAME_BOUNDS,
-        byref(frame),
-        sizeof(frame)
-    )
-    xy_corner = frame.left + border_width, frame.top + title_bar_height
+# def get_bg3_corner(bg3_handle, title_bar_height=58, border_width=2):
+#     # You may need to adjust these values based on your application and Windows version/DPI settings
+#     frame = wintypes.RECT()
+#     DWMWA_EXTENDED_FRAME_BOUNDS = 9
+#     windll.dwmapi.DwmGetWindowAttribute(
+#         bg3_handle,
+#         DWMWA_EXTENDED_FRAME_BOUNDS,
+#         byref(frame),
+#         sizeof(frame)
+#     )
+#     xy_corner = frame.left + border_width, frame.top + title_bar_height
         
         
     
-    # Return the content area rectangle
-    return xy_corner
+#     # Return the content area rectangle
+#     return xy_corner
 
 def find_bg3_handle():
     """Enumerate all open windows and return their titles."""
@@ -75,16 +73,19 @@ def test_bg3_activated(bg3_handle):
 
 if __name__ == "__main__":
     # screenshot = get_screen_shot()
-    max_level = int(input(promts["input_max_level"]))
-    loop_count = int(input(promts["input_loop_count"]))
-    index_str = input(promts["input_index"])
+    first_pixel_str = input("请输入博德之门窗口左上角像素坐标，用逗号分隔，先x后y：\n")
+    first_pixel_loc = first_pixel_str.split(",")
+    x = int(first_pixel_loc[0])
+    y = int(first_pixel_loc[1])
+    max_level = int(input("请输入当前可以升到的最高等级：\n"))
+    loop_count = int(input("请输入循环次数：\n"))
+    index_str = input("请输入角色的头像编号（1-4），第一个是升级的角色，之后的是进货的角色，用逗号隔开：\n")
     index_list = index_str.split(",")
-    conversation_number_str = input(promts["input_conversation_number"])
+    conversation_number_str = input("请输入对话选项的编号（1-4），第一个是升级的角色洗点的对话选项编号，之后的是进货的角色进入购买界面的对话选项编号，用逗号隔开：\n")
     conversation_number_list = conversation_number_str.split(",")
 
     bg3_handle = find_bg3_handle()
-    show_text(promts["bg3_front"], 5000, bg3_handle)
-    x, y = get_bg3_corner(bg3_handle)
+    show_text("请将博德之门置于最前端，否则五秒后程序将自动关闭", 5000, bg3_handle)
 
     mover = stuff_mover(x, y, max_level = max_level, loop_count = loop_count)
     # mover.add_leveller(0,4)

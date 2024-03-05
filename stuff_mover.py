@@ -7,8 +7,6 @@ import time
 import pydirectinput
 import glob
 
-with open("promts.json") as f:
-    promts = json.load(f)
 
 class stuff_mover():
     def __init__(self, window_x_start, window_y_start, max_level = 12, loop_count = 1):
@@ -103,7 +101,7 @@ class stuff_mover():
                     time.sleep(0.1)
                     return
                 else:
-                    print(promts["npc_not_found"])
+                    print("无法找到npc")
                     exit()
 
     def right_click_alot(self, times = 10):
@@ -212,12 +210,15 @@ class stuff_mover():
             screenshot = self.get_screen_shot()
             screenshot_area = screenshot[y_start:y_end, x_start:x_end,:]
             item_x, item_y = reco_image_pos(screenshot_area, item_icon)
-            if item_x >= 0:
+            while item_x >= 0:
                 self.move_to([item_x+20+x_start, item_y+20+y_start])
                 pydirectinput.mouseDown()
                 self.move_to(self.position_list["container_inside"])
                 pydirectinput.mouseUp()
                 time.sleep(0.1)
+                screenshot = self.get_screen_shot()
+                screenshot_area = screenshot[y_start:y_end, x_start:x_end,:]
+                item_x, item_y = reco_image_pos(screenshot_area, item_icon)
 
         pydirectinput.press("esc")
         pydirectinput.press("esc")

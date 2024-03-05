@@ -1,6 +1,7 @@
 {
   "npc_not_found": "无法找到npc",
   "input_max_level": "请输入当前可以升到的最高等级：\n",
+  "input_first_pixel":"请输入博德之门窗口左上角像素坐标，用逗号分隔，先x后y：\n",
   "input_loop_count": "请输入循环次数：\n",
   "input_index": "请输入角色的头像编号（1-4），第一个是升级的角色，之后的是进货的角色，用逗号隔开：\n",
   "input_conversation_number": "请输入对话选项的编号（1-4），第一个是升级的角色洗点的对话选项，之后的是进货的角色进入购买界面的编号，用逗号隔开：\n",

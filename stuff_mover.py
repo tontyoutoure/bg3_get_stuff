@@ -7,6 +7,9 @@ import time
 import pydirectinput
 import glob
 
+with open("promts.json") as f:
+    promts = json.load(f)
+
 class stuff_mover():
     def __init__(self, window_x_start, window_y_start, max_level = 10, loop_count = 1):
         self.window_x_start = window_x_start
@@ -100,7 +103,7 @@ class stuff_mover():
                     time.sleep(0.1)
                     return
                 else:
-                    print("无法找到npc")
+                    print(promts["npc_not_found"])
                     exit()
 
     def right_click_alot(self, times = 10):

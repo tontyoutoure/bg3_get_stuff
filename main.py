@@ -7,9 +7,12 @@ import win32api
 from ctypes import windll, byref, wintypes, sizeof
 import time
 import math
+import json
 
 from stuff_mover import stuff_mover
 
+with open("promts.json") as f:
+    promts = json.load(f)
 
 def show_text(text, duration, bg3_handle):
     root = tk.Tk()
@@ -72,15 +75,15 @@ def test_bg3_activated(bg3_handle):
 
 if __name__ == "__main__":
     # screenshot = get_screen_shot()
-    max_level = int(input("请输入当前可以升到的最高等级：\n"))
-    loop_count = int(input("请输入循环次数：\n"))
-    index_str = input("请输入角色的头像编号（1-4），第一个是升级的角色，之后的是进货的角色，用逗号隔开：\n")
+    max_level = int(input(promts["input_max_level"]))
+    loop_count = int(input(promts["input_loop_count"]))
+    index_str = input(promts["input_index"])
     index_list = index_str.split(",")
-    conversation_number_str = input("请输入对话选项的编号（1-4），第一个是升级的角色洗点的对话选项，之后的是进货的角色进入购买界面的编号，用逗号隔开：\n")
+    conversation_number_str = input(promts["input_conversation_number"])
     conversation_number_list = conversation_number_str.split(",")
 
     bg3_handle = find_bg3_handle()
-    show_text("请将博德之门置于最前端，否则五秒后程序将自动关闭", 5000, bg3_handle)
+    show_text(promts["bg3_front"], 5000, bg3_handle)
     x, y = get_bg3_corner(bg3_handle)
 
     mover = stuff_mover(x, y, max_level = max_level, loop_count = loop_count)
